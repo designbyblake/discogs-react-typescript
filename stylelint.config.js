@@ -1,6 +1,6 @@
 /** @type {import('stylelint').Config} */
 export default {
-    extends: ["stylelint-config-standard-scss"],
+    extends: ["stylelint-config-standard-scss", "stylelint-config-tailwindcss/scss"],
     plugins: ["stylelint-scss", "stylelint-order", "stylelint-prettier"],
     rules: {
         "alpha-value-notation": "percentage",

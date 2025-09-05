@@ -1,6 +1,6 @@
 import { Form, Link, redirect } from 'react-router';
 
-import type { Route } from '../+types/help';
+import type { Route } from './+types/Home';
 import styles from './Home.module.scss';
 
 export function meta({}: Route.MetaArgs) {

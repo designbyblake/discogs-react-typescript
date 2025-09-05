@@ -1,10 +1,14 @@
 import { Outlet } from 'react-router';
-import styles from './Layout.module.scss';
+
+import { Header } from '../Header/Header';
 
 export default function Layout() {
   return (
-    <main className={styles.root}>
-      <Outlet />
-    </main>
+    <>
+      <Header />
+      <main className='z-1 mx-auto max-w-[1360px] px-5 py-10'>
+        <Outlet />
+      </main>
+    </>
   );
 }

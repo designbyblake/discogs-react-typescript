@@ -1,11 +1,9 @@
 import { useState, createContext, useMemo } from 'react';
-import type { OAuthTokenSecretResponse } from '~/types/OAuth';
+import type { UserProfile } from '~/types/UserProfile';
 
 type OAuthProviderContextType = {
-  discogsUser: OAuthTokenSecretResponse | null;
-  setDiscogsUser: React.Dispatch<
-    React.SetStateAction<OAuthTokenSecretResponse | null>
-  >;
+  discogsUser: UserProfile | null;
+  setDiscogsUser: React.Dispatch<React.SetStateAction<UserProfile | null>>;
 };
 
 export const OAuthContext = createContext<OAuthProviderContextType | null>(
@@ -15,8 +13,7 @@ export const OAuthContext = createContext<OAuthProviderContextType | null>(
 export const OAuthProvider = ({
   children
 }: Readonly<{ children: React.ReactNode }>) => {
-  const [discogsUser, setDiscogsUser] =
-    useState<OAuthTokenSecretResponse | null>(null);
+  const [discogsUser, setDiscogsUser] = useState<UserProfile | null>(null);
 
   const value = useMemo(() => ({ discogsUser, setDiscogsUser }), [discogsUser]);
   return (

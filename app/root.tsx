@@ -1,16 +1,16 @@
 import './app.css';
+import { AppOutlet } from './AppOutlet';
 import { ReactQueryProvider, OAuthProvider } from './providers-context';
 import {
   isRouteErrorResponse,
   Links,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration
 } from 'react-router';
 import type { Route } from './+types/root';
-
-export function Layout({ children }: { children: React.ReactNode }) {
+import type { Children } from '~/types/Children';
+export function Layout({ children }: Children) {
   return (
     <html lang='en'>
       <head>
@@ -32,7 +32,7 @@ export default function App() {
   return (
     <OAuthProvider>
       <ReactQueryProvider>
-        <Outlet />
+        <AppOutlet />
       </ReactQueryProvider>
     </OAuthProvider>
   );

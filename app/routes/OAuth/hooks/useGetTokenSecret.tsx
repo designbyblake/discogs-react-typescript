@@ -1,22 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import { default as axios } from 'axios';
-import type {
-  OAuthTokenSecretResponse,
-  OAuthGetTokenRequest
-} from '~/types/OAuth';
+import type { OAuthGetTokenRequest } from '~/types/OAuth';
+import { ENDPOINT_ROUTES } from '~/constants/routes';
+import type { UserProfile } from '~/types/UserProfile';
 
 export const useGetTokenSecret = ({ oauth_verifier }: OAuthGetTokenRequest) => {
-  const baseUrl = import.meta.env.VITE_PROXY_URL;
-
-  return useQuery<OAuthTokenSecretResponse>({
-    queryKey: ['oauthTokenSecret'],
-    queryFn: () =>
-      axios
+  return useQuery<UserProfile>({
+    queryKey: ['oauthTokenSecret', oauth_verifier],
+    queryFn: async () => {
+      console.log('useGetTokenSecretBeing Called');
+      return axios
         .post(
-          `${baseUrl}/discogs/oauth/access_token`,
-          {
-            oauth_verifier: oauth_verifier
-          },
+          ENDPOINT_ROUTES.OAUTH_ACCESS_TOKEN,
+          { oauth_verifier },
           { withCredentials: true }
         )
         .then((response) => {
@@ -24,8 +20,10 @@ export const useGetTokenSecret = ({ oauth_verifier }: OAuthGetTokenRequest) => {
         })
         .catch((error) => {
           console.log(error);
-        }),
-    staleTime: 0, // Data is considered stale immediately
-    gcTime: 0 // Remove from cache immediately when stale and inactive
+        });
+    },
+    enabled: !!oauth_verifier
+    // staleTime: 0, // Data is considered stale immediately
+    // gcTime: 0 // Remove from cache immediately when stale and inactive
   });
 };

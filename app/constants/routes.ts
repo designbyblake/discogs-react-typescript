@@ -2,6 +2,7 @@ const baseUrl = import.meta.env.VITE_PROXY_URL;
 
 export const ENDPOINT_ROUTES = {
   GET_COLLECTION: `${baseUrl}/discogs/collection`,
+  GET_RELEASE: `${baseUrl}/discogs/get-release`,
   GET_COLLECTION_VALUES: `${baseUrl}/discogs/collection/values`,
   OAUTH_REQUEST_TOKEN: `${baseUrl}/discogs/oauth/request_token`,
   OAUTH_ACCESS_TOKEN: `${baseUrl}/discogs/oauth/access_token`,
@@ -17,6 +18,7 @@ export const APP_ROUTES = {
   MY_WANTLIST: '/wantlist',
   DASHBOARD: '/:username/dashboard',
   COLLECTION: '/:username/collection',
+  RELEASE: '/release/:release_id',
   WANTLIST: '/:username/wantlist',
   LOGIN: '/oauth/login',
   LOGOUT: '/oauth/logout',

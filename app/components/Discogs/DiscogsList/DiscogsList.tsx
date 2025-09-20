@@ -1,7 +1,8 @@
 import { useGetCollection } from '~/hooks/useGetCollection';
 import type { DiscogsListingResponse } from '~/mappers/DiscogsListing';
 import { DiscogsListingMapper } from '~/mappers/DiscogsListing';
-import clsx from 'clsx';
+import { DiscogsListItem } from '../DiscogsListItem/DiscogsListItem';
+import { useMemo } from 'react';
 export const DiscogsList = ({
   username,
   per_page
@@ -13,7 +14,12 @@ export const DiscogsList = ({
     name: username,
     per_page: per_page
   });
+  const releases = data?.releases || [];
 
+  const mappedReleases = useMemo(
+    () => DiscogsListingMapper.mapToReleaseList(releases),
+    [releases]
+  );
   if (isLoading || isPending) return 'Loading...';
 
   if (error) return `An error has occurred: ${error.message}`;
@@ -21,38 +27,17 @@ export const DiscogsList = ({
   return (
     <div>
       <ul className='flex flex-wrap items-stretch gap-8'>
-        {DiscogsListingMapper.mapToReleaseList(data?.releases).map(
-          (release: DiscogsListingResponse) => {
-            return (
-              <li
-                key={release.instance_id}
-                className='block max-w-[306px] rounded-xl border-1 border-solid border-black bg-white p-6 shadow-xl/30'
-              >
-                <figure>
-                  <div
-                    className={clsx(
-                      `relative mb-4 aspect-square w-3xs max-w-80 border-2 border-solid border-black`,
-                      `rounded-b-full`
-                    )}
-                  >
-                    <img
-                      src={release.cover_image}
-                      alt={`Album cover for ${release.title}`}
-                      className={clsx(
-                        `absolute top-0 right-0 bottom-0 left-0 block aspect-square w-300 bg-contain object-cover`,
-                        `rounded-b-full`
-                      )}
-                    />
-                  </div>
-                  <figcaption>
-                    <span className='block font-bold'>{release.title}</span>
-                    {release.artist}
-                  </figcaption>
-                </figure>
-              </li>
-            );
-          }
-        )}
+        {mappedReleases.map((release: DiscogsListingResponse) => {
+          return (
+            <DiscogsListItem
+              key={release.instance_id}
+              coverImage={release.cover_image}
+              title={`${release.title} - ${release.release_id}`}
+              artist={release.artist}
+              format={release.format}
+            />
+          );
+        })}
       </ul>
     </div>
   );

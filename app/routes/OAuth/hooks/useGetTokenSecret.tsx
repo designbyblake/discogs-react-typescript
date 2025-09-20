@@ -8,7 +8,6 @@ export const useGetTokenSecret = ({ oauth_verifier }: OAuthGetTokenRequest) => {
   return useQuery<UserProfile>({
     queryKey: ['oauthTokenSecret', oauth_verifier],
     queryFn: async () => {
-      console.log('useGetTokenSecretBeing Called');
       return axios
         .post(
           ENDPOINT_ROUTES.OAUTH_ACCESS_TOKEN,

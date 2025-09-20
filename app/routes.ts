@@ -10,6 +10,7 @@ export default [
 
     route(APP_ROUTES.DASHBOARD, 'routes/Dashboard/Dashboard.tsx'),
     route(APP_ROUTES.COLLECTION, 'routes/Collection/Collection.tsx'),
+    route(APP_ROUTES.RELEASE, 'routes/Release/Release.tsx'),
 
     route(APP_ROUTES.ABOUT, 'routes/about.tsx'),
 

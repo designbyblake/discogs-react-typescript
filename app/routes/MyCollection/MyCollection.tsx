@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { OAuthContext } from '~/providers-context';
-import { DiscogsList, DiscogsValues } from '~/components/Discogs';
+import { DiscogsValues, DiscogsListInfite } from '~/components/Discogs';
+import { Heading } from '~/components/Heading/Heading';
 import type { Route } from './+types/MyCollection';
 
 export function meta({}: Route.MetaArgs) {
@@ -15,10 +16,10 @@ export default function MyCollection() {
   const { username } = oAuth.discogsUser;
 
   return (
-    <div>
-      <h1>Collection {username}</h1>
+    <>
+      <Heading level='h1'>Collection {username}</Heading>
       <DiscogsValues username={username} />
-      <DiscogsList username={username} />
-    </div>
+      <DiscogsListInfite username={username} />
+    </>
   );
 }

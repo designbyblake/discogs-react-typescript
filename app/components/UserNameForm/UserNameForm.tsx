@@ -11,7 +11,6 @@ export function UserNameForm() {
 
   if (error) return 'An error has occurred: ' + error.message;
 
-  console.log(data);
   return (
     <>
       <h1>{data.message}</h1>

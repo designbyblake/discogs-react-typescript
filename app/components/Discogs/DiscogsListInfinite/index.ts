@@ -1,0 +1,1 @@
+export { DiscogsListInfite } from './DiscogsListInfinite';

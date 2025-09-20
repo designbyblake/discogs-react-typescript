@@ -10,9 +10,11 @@ export const DiscogsValues = ({ username }: { username: string }) => {
   return (
     <div className='mb-6 rounded-b-xl bg-black p-10 text-white'>
       <Heading>Collection Value</Heading>
-      <p>
-        <span className='text-3xl'>{minimum}</span> -----{' '}
-        <span className='text-3xl'>{median}</span> -----{' '}
+      <p className='flex items-center'>
+        <span className='text-3xl'>{minimum}</span>
+        <span className='m-4 w-15 border border-white'></span>
+        <span className='text-3xl'>{median}</span>
+        <span className='m-4 w-15 border border-white'></span>
         <span className='text-3xl'>{maximum}</span>
       </p>
     </div>

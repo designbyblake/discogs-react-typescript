@@ -1,15 +1,5 @@
 import type { Release } from '~/types/Collection';
 
-export type DiscogsListingResponse = {
-  title: string;
-  artist: string;
-  instance_id: number;
-  release_id: number;
-  cover_image: string;
-  thumb: string;
-  format: string;
-};
-
 export class DiscogsListingMapper {
   static mapToReleaseList(releases: Release[]): DiscogsListingResponse[] {
     const list = releases.map((release) => {
@@ -34,3 +24,13 @@ export class DiscogsListingMapper {
     return list;
   }
 }
+
+export type DiscogsListingResponse = {
+  title: string;
+  artist: string;
+  instance_id: number;
+  release_id: number;
+  cover_image: string;
+  thumb: string;
+  format: string;
+};

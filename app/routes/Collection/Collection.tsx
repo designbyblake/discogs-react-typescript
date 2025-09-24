@@ -1,4 +1,4 @@
-import { DiscogsList, DiscogsValues } from '~/components/Discogs';
+import { DiscogsList } from '~/components/Discogs';
 export default function Collection({
   params
 }: {

@@ -40,6 +40,7 @@ export interface DiscogsArtist {
   join: string;
   name: string;
   resource_url: string;
+  thumbnail_url?: string;
   role: string;
   tracks: string;
 }

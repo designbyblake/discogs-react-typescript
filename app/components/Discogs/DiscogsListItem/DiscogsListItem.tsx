@@ -1,12 +1,14 @@
 import clsx from 'clsx';
+import { Link } from 'react-router';
 export const DiscogsListItem = ({
   coverImage,
   title,
   artist,
-  format
+  format,
+  release_id
 }: DiscogsListItemProps) => {
   return (
-    <div className='block max-w-[306px] rounded-xl border-1 border-solid border-black bg-white p-6 shadow-xl/30'>
+    <div className='relative block max-w-[306px] rounded-xl border-1 border-solid border-black bg-white p-6 shadow-xl/30'>
       <figure>
         <div
           className={clsx(
@@ -28,7 +30,10 @@ export const DiscogsListItem = ({
         </div>
         <figcaption className='flex flex-col gap-1'>
           <span className='block text-xl font-bold text-(--color-upsdell-red)'>
-            {title}
+            <Link to={`/release/${release_id}`}>
+              <span className='absolute inset-0'></span>
+              {title}
+            </Link>
           </span>
           <strong className='text-l block'>{artist}</strong>
           <span className='block text-sm'>{format}</span>
@@ -43,4 +48,5 @@ export type DiscogsListItemProps = {
   title: string;
   artist: string;
   format: string;
+  release_id: number;
 };
